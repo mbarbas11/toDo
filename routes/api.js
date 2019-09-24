@@ -16,3 +16,5 @@ router.put('/users/:id', function(req, resp){ //edit/update user (':' means var)
 router.delete('/users/:id', function(req, resp){  //remove user
     resp.send({ type: 'DELETE' }) 
 });
+
+module.exports = router;
