@@ -3,6 +3,8 @@ const express = require('express');
 //setup
 const app = express();
 
+app.use('/api', require('./routes/api'));
+
 /*IGNORE
 //routehandler url localhost:2000/....logged message waiting for resp
 app.get('/api',function(req, resp){
