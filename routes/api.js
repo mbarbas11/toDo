@@ -9,8 +9,8 @@ router.post('/users', function(req, resp){ //add new user
     console.log(req.body);
     resp.send({
         type: 'POST',
-        //name: req.body.name,
-        //rank: req.body.rank
+        name: req.body.name,
+        level: req.body.level
         }); 
 });
 
