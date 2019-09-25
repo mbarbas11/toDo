@@ -15,4 +15,8 @@ const userSchema = new schema({
         default: false
     }
 
-})
+});
+
+const User = mongoose.model('user', userSchema) //structured based on schema
+
+module.export = User;
