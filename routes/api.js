@@ -9,32 +9,12 @@ router.get('/users', function(req, resp, next){ //receive user list w/ geolocati
     })*/
 
     //GeoNear looks for coorindates nearby provided users
-    Ninja.aggregate([
-
-        {
-
-            $geoNear: {
-
-                near: {type:'Point',coordinates:[parseFloat(req.query.lng), parseFloat(req.query.lat)]},
-
-                distanceField: "dist.calculated",
-
-                maxDistance: 100000,
-
-                spherical: true                
-
-            }
-
-        }
-
-    ])
-
-    .then(function(result){
-
-        res.send(result);
-
-    }).catch(next);
-
+    User.geoNear(
+        {type: 'Point', coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)]}, //Latitude and Longitude
+        {maxDistance: 100000, spherical: true} //distance in meters
+    ).then(function(users){
+        resp.send(users)
+    });
 });
 
 router.post('/users', function(req, resp, next){ //add new user
