@@ -1,10 +1,40 @@
 const express = require('express');
 const router = express.Router(); //can mount handlers
-const User = require('../models/user.js'); // ../ goes up in directory
+const User = require('../models/user'); // ../ goes up in directory
 
 
-router.get('/users', function(req, resp, next){ //receive user list
-    resp.send({ type: 'GET' }); //type(type of request)
+router.get('/users', function(req, resp, next){ //receive user list w/ geolocation
+    /*User.find({}).then(function(ninjas){
+        resp.send(users);
+    })*/
+
+    //GeoNear looks for coorindates nearby provided users
+    Ninja.aggregate([
+
+        {
+
+            $geoNear: {
+
+                near: {type:'Point',coordinates:[parseFloat(req.query.lng), parseFloat(req.query.lat)]},
+
+                distanceField: "dist.calculated",
+
+                maxDistance: 100000,
+
+                spherical: true                
+
+            }
+
+        }
+
+    ])
+
+    .then(function(result){
+
+        res.send(result);
+
+    }).catch(next);
+
 });
 
 router.post('/users', function(req, resp, next){ //add new user
