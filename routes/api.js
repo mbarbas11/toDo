@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router(); //can mount handlers
-const User = require('../models/user'); // ../ goes up in directory
+const User = require('../models/user.js'); // ../ goes up in directory
 
 
 router.get('/users', function(req, resp){ //receive user list
