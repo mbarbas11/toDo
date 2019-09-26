@@ -18,6 +18,12 @@ app.use(bodyParser.json());
 //route initalized
 app.use('/api', require('./routes/api'));
 
+//error handling
+app.use(function(err, req, resp, next){
+    //console.log(err);
+    resp.status(422).send({error: err._message});
+});
+
 /*IGNORE
 //routehandler url localhost:2000/....logged message waiting for resp
 app.get('/api',function(req, resp){

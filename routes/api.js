@@ -3,19 +3,15 @@ const router = express.Router(); //can mount handlers
 const User = require('../models/user.js'); // ../ goes up in directory
 
 
-router.get('/users', function(req, resp){ //receive user list
+router.get('/users', function(req, resp, next){ //receive user list
     resp.send({ type: 'GET' }); //type(type of request)
 });
 
-router.post('/users', function(req, resp){ //add new user
-
-    //var user = new User(req.body);
-    //user.save(); //saves in collection
-
+router.post('/users', function(req, resp, next){ //add new user
     User.create(req.body).then(function(user){
         resp.send(user);
-    }); 
-    //ignore(test)
+    }).catch(next); //if fails calls catch to go to to middleware for error handling
+    
     // returns promise, once completed, sends response....
 
     //console.log(req.body);
@@ -28,11 +24,11 @@ router.post('/users', function(req, resp){ //add new user
     */
 });
 
-router.put('/users/:id', function(req, resp){ //edit/update user (':' means var)
+router.put('/users/:id', function(req, resp, next){ //edit/update user (':' means var)
     resp.send({ type: 'PUT' });
 });
 
-router.delete('/users/:id', function(req, resp){  //remove user
+router.delete('/users/:id', function(req, resp, next){  //remove user
     resp.send({ type: 'DELETE' }); 
 });
 
