@@ -24,12 +24,18 @@ router.post('/users', function(req, resp, next){ //add new user
     */
 });
 
-router.put('/users/:id', function(req, resp, next){ //edit/update user (':' means var)
-    resp.send({ type: 'PUT' });
+router.put('/users/:id', function(req, resp, next){ //edit/update user (':' means var) 
+    User.findByIdAndUpdate({_id: req.params.id},req.body).then(function(user){
+        resp.send(user);
+    })
 });
 
-router.delete('/users/:id', function(req, resp, next){  //remove user
-    resp.send({ type: 'DELETE' }); 
+router.delete('/users/:id', function(req, resp, next){  //remove user //communicate with mongodb to delete user
+    //console.log(req.params.id); users/'1234' will get 12345
+    User.findByIdAndRemove({_id: req.params.id}).then(function(user){
+        resp.send(user);
+    }); //when finds id, returns user that will be removed
+    
 });
 
 module.exports = router;
