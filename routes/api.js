@@ -25,9 +25,9 @@ router.post('/users', function(req, resp, next){ //add new user
 });
 
 router.put('/users/:id', function(req, resp, next){ //edit/update user (':' means var) 
-    User.findByIdAndUpdate({_id: req.params.id},req.body).then(function(user){
-        resp.send(user);
-    })
+    User.findByIdAndUpdate({_id: req.params.id}, req.body, {new:true}).then(function(user){
+            resp.send(user);
+        }) 
 });
 
 router.delete('/users/:id', function(req, resp, next){  //remove user //communicate with mongodb to delete user

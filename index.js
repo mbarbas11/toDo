@@ -8,7 +8,7 @@ const app = express();
 //mongodb connection
 //mongoose.connect('mongodb://localhost/gouser', {useNewUrlParser = true });
 
-mongoose.connect("mongodb://localhost/usergo", { useNewUrlParser: true , useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost/usergo", { useCreateIndex: true, useFindAndModify: false, useNewUrlParser: true , useUnifiedTopology: true});
 //IGNORE mongoose.Promise = global.Promise; //deprecated..overriding
 
 //app.use(bodyParser.urlencoded({ extended: false }))
