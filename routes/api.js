@@ -13,8 +13,8 @@ router.get('/users', function(req, resp, next){ //receive user list w/ geolocati
         {type: 'Point', coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)]}, //Latitude and Longitude
         {maxDistance: 100000, spherical: true} //distance in meters
     ).then(function(users){
-        resp.send(users)
-    });
+        resp.send(users);
+    }).catch(next);
 });
 
 router.post('/users', function(req, resp, next){ //add new user
