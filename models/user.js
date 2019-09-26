@@ -1,13 +1,13 @@
 const mongoose = require ('mongoose');
-const schema = mongoose.schema;
+const Schema = mongoose.Schema;
 
 //creating schema and model for user
-const userSchema = new schema({
+const userSchema = new Schema({
     name:{
         type: String,
         required: [true, 'Needs name field']
     },
-    rank:{
+    level:{
         type: String
     },
     available:{
