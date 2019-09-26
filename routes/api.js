@@ -15,6 +15,7 @@ router.post('/users', function(req, resp){ //add new user
     User.create(req.body).then(function(user){
         resp.send(user);
     }); 
+    //ignore(test)
     // returns promise, once completed, sends response....
 
     //console.log(req.body);
