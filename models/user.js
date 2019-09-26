@@ -19,4 +19,4 @@ const userSchema = new Schema({
 
 const User = mongoose.model('user', userSchema) //structured based on schema
 
-module.export = User;
+module.exports = User;
