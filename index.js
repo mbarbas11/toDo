@@ -13,6 +13,8 @@ mongoose.connect("mongodb://localhost/usergo", { useCreateIndex: true, useFindAn
 
 //app.use(bodyParser.urlencoded({ extended: false }))
 
+app.use(express.static('public'));
+
 app.use(bodyParser.json());
 
 //route initalized
